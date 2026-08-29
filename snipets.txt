@@ -1,0 +1,44 @@
+(async () => {
+
+    if (!window.PH10Access) {
+
+        await new Promise(
+            (resolve, reject) => {
+
+                const config =
+                    document.createElement("script");
+
+                config.src =
+                    "https://airrishlucky.github.io/ph10-access-control/config.js";
+
+                config.onload = resolve;
+                config.onerror = reject;
+
+                document.head.appendChild(config);
+            }
+        );
+
+        await new Promise(
+            (resolve, reject) => {
+
+                const access =
+                    document.createElement("script");
+
+                access.src =
+                    "https://airrishlucky.github.io/ph10-access-control/access.js";
+
+                access.onload = resolve;
+                access.onerror = reject;
+
+                document.head.appendChild(access);
+            }
+        );
+    }
+
+    await PH10Access.require("WFAC");
+
+    // ==================================
+    // YOUR ORIGINAL WFAC CODE
+    // ==================================
+
+})();
