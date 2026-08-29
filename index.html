@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PH10 Access Control</title>
+</head>
 
+<body>
+
+<h1>PH10 Access Control Test</h1>
+
+<script src="./config.js"></script>
+<script src="./access.js"></script>
+
+<script>
+(async () => {
+
+    try {
+
+        const result =
+            await PH10Access.require(
+                "PH10_TEST"
+            );
+
+        console.log(
+            "PH10 access:",
+            result
+        );
+
+        document.body.insertAdjacentHTML(
+            "beforeend",
+            `
+                <h2>Access result: ALLOWED</h2>
+                <p>Username: ${result.username}</p>
+                <p>Device: ${result.deviceId}</p>
+            `
+        );
+
+    } catch (error) {
+
+        console.log(
+            "PH10 access denied:",
+            error
+        );
+
+    }
+
+})();
+</script>
+
+</body>
+</html>
